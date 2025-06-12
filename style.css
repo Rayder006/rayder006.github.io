@@ -357,7 +357,7 @@ body {
     transition: background-color 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
     opacity: 0;
     visibility: hidden;
-    transform: translateX(300px); /* Mude translateY para translateX para um efeito de deslize lateral */
+    transform: translateX(10px); /* Mude translateY para translateX para um efeito de deslize lateral */
 }
 
 /* Mostra o modal ao passar o mouse sobre o wrapper */
