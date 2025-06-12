@@ -146,11 +146,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     async function loadPage(pageFile, pageTitle){
         try{
             const response = await fetch(`./pages/${pageFile}`);
-            if(!response.ok){
+            if (!response.ok) {
                 throw new Error(`Erro ao carregar a página: ${response.statusText}`);
             }
             const markdownText = await response.text();
             mainContent.innerHTML = `<h2>${pageTitle}</h2>` + marked.parse(markdownText);
+
+            if (window.MathJax) { 
+                MathJax.typesetPromise([mainContent]) 
+                    .catch((err) => console.error('MathJax rendering failed:', err));
+            }
 
             if(pageFile === 'main.md'){
                 visitorNameSpan = document.getElementById('visitor-name');
@@ -191,10 +196,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     const pages = [
        { file: 'main.md', title: 'Página Inicial' },
-       { file: 'estudos-de-algoritmos.md', title: '📘 Entendendo estruturas de dados sem morrer por dentro' },
-       { file: 'curiosidades-da-ia.md', title: '🎮 Projeto GameDev 2030' },
-       { file: 'curiosidades-da-ia.md', title: '📝 Anotações de aula que viraram posts' },
-       { file: 'curiosidades-da-ia.md', title: '🌐 Links estranhamente úteis' },
+       { file: 'algo.md', title: '📘 Entendendo estruturas de dados sem morrer por dentro' },
+       { file: 'game.md', title: '🎮 Projeto GameDev 2030' },
+       { file: 'aula.md', title: '📝 Anotações de aula que viraram posts' },
+       { file: 'link.md', title: '🌐 Links estranhamente úteis' },
     ];
 
     // Inicialização e Event Listeners Globais
