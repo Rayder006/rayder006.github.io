@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Estudos de CS</title>
+    <title>localhost.com:8000</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -19,6 +19,19 @@
         <main class="content" id="main-content">
             <p>Selecione uma página na barra lateral para começar a ler!</p>
         </main>
+    </div>
+
+
+    <div class="theme-switcher-wrapper">
+        <button id="theme-switcher-button" class="theme-button"><i id="themeIcon" class="fa-solid fa-sun"></i></button>
+        <div id="theme-options-modal" class="theme-options-modal">
+            <div class="theme-options-content">
+                <button class="theme-option" data-theme="light"><i class="fa-solid fa-sun"></i></button>
+                <button class="theme-option" data-theme="dark"><i class="fa-solid fa-moon"></i></button>
+                <button class="theme-option" data-theme="monokai"><i class="fa-solid fa-m"></i></button>
+                <button class="theme-option" data-theme="matrix"><i class="fa-solid fa-code"></i></button>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>

@@ -17,7 +17,7 @@
 <ul class="links">
   <li><a href="https://x.com/Rayder006" target=”_blank”><i class="fab fa-twitter"></i> Twitter</a></li>
   <li><a href="https://www.instagram.com/not.joni/" target=”_blank”><i class="fab fa-instagram"></i> Instagram</a></li>
-  <li><a href="www.linkedin.com/in/jonii-ferreira" target=”_blank”><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+  <li><a href="https://www.linkedin.com/in/jonii-ferreira" target=”_blank”><i class="fab fa-linkedin"></i> LinkedIn</a></li>
   <li><a href="https://github.com/Rayder006" target=”_blank”><i class="fab fa-github"></i> GitHub</a></li>
 </ul>
 

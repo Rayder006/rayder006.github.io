@@ -1,12 +1,62 @@
-/* Cores do Notion */
+/* Desabilita transições temporariamente (usado por JS para mudança de tema) */
+body.no-transition {
+    transition: none !important;
+}
+
+/* Variáveis para cores do Tema Claro (Padrão) */
 :root {
     --bg-color: #f6f6f6;
     --sidebar-bg: #ffffff;
     --text-color: #333;
-    --link-color: #4CAF50;
+    --link-color: #4CAF50; /* Um tom de verde para links, como o Notion */
     --border-color: #e0e0e0;
     --hover-bg: #f0f0f0;
+    --code-bg: #f5f5f5;
+    --code-border: #ddd;
+    --button-hover-darken: #3e8e41; /* Cor para o hover do botão no tema claro */
 }
+
+/* Tema Escuro */
+body.theme-dark {
+    --bg-color: #1a1a1a;
+    --sidebar-bg: #2d2d2d;
+    --text-color: #e0e0e0;
+    --link-color: #8aff8a; /* Um verde claro para links */
+    --border-color: #444;
+    --hover-bg: #3c3c3c;
+    --code-bg: #222;
+    --code-border: #333;
+    --button-hover-darken: #72db72;
+}
+
+/* Tema Monokai (inspirado no popular tema de IDEs) */
+body.theme-monokai {
+    --bg-color: #272822; /* Fundo escuro */
+    --sidebar-bg: #383830;
+    --text-color: #f8f8f2; /* Texto claro */
+    --link-color: #a6e22e; /* Verde limão */
+    --border-color: #49483e;
+    --hover-bg: #49483e;
+    --code-bg: #3d3d3a;
+    --code-border: #52524d;
+    --button-hover-darken: #8bd41f;
+}
+
+/* Tema Matrix (preto azulado e verde) */
+body.theme-matrix {
+    --bg-color: #0d1a1a; /* Quase preto, com toque azulado */
+    --sidebar-bg: #032020;
+    --text-color: #00ff00; /* Verde neon */
+    --link-color: #00cc00; /* Verde um pouco mais escuro para links */
+    --border-color: #003300;
+    --hover-bg: #002200;
+    --code-bg: #001100;
+    --code-border: #002200;
+    --button-hover-darken: #00a000;
+}
+
+
+/* --- Estilos Base (Aplicados a todos os temas via variáveis) --- */
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -17,33 +67,18 @@ body {
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
     display: flex;
     width: 90%;
     max-width: 1200px;
-    background-color: #fff;
+    background-color: var(--sidebar-bg);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
     margin: 20px 0;
-}
-
-.list-item {
-    display: block;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.link-text {
-    display: block;
-    max-width: 20vw;           
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .sidebar {
@@ -92,7 +127,9 @@ body {
     overflow-y: auto;
 }
 
-.content h1, .content h2, .content h3 {
+.content h1,
+.content h2,
+.content h3 {
     color: var(--text-color);
     margin-top: 1.5em;
     margin-bottom: 0.5em;
@@ -102,7 +139,8 @@ body {
     margin-bottom: 1em;
 }
 
-.content ul, .content ol {
+.content ul,
+.content ol {
     margin-left: 20px;
     margin-bottom: 1em;
 }
@@ -116,10 +154,10 @@ body {
     text-decoration: underline;
 }
 
-/* Blocos de código */
+/* Estilos para blocos de código */
 .content pre {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
     border-radius: 4px;
     padding: 10px;
     overflow-x: auto;
@@ -142,9 +180,10 @@ body {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 1rem; 
+    gap: 1rem;
 }
 
+/* --- Estilos do Modal de Alteração de Nome (Apelido) --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -159,13 +198,14 @@ body {
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: var(--sidebar-bg);
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     max-width: 400px;
     width: 90%;
+    color: var(--text-color);
 }
 
 .modal-content h3 {
@@ -181,10 +221,12 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1em;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .modal-content button {
-    background-color: var(--link-color);
+    background-color: gray;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -195,18 +237,17 @@ body {
 }
 
 .modal-content button:hover {
-    background-color: darken(var(--link-color), 10%);
+    background-color: var(--button-hover-darken);
 }
 
-/* tooltip */
-
+/* --- Estilos do Tooltip "mudar apelido" --- */
 #visitor-name {
     position: relative;
     display: inline-block;
     cursor: pointer;
     text-decoration: underline;
-    text-decoration-color: red;
-    text-decoration-style: wavy;
+    text-decoration-color: red; /* Mantido hard-coded conforme sua preferência */
+    text-decoration-style: wavy; /* Mantido hard-coded conforme sua preferência */
     padding-bottom: 2px;
 }
 
@@ -216,9 +257,8 @@ body {
     bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
+    background-color: #333; /* Cor fixa para o tooltip */
     color: #fff;
-    /* tamanho do balão */
     padding: 3px 6px;
     font-size: 0.7em;
     border-radius: 4px;
@@ -240,11 +280,10 @@ body {
     position: absolute;
     bottom: 100%;
     left: 50%;
-    /* posição da seta */
     transform: translateX(-50%) translateY(6px);
     border-width: 4px;
     border-style: solid;
-    border-color: #333 transparent transparent transparent;
+    border-color: #333 transparent transparent transparent; /* Cor fixa para a seta do tooltip */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -255,4 +294,140 @@ body {
 #visitor-name:hover::before {
     opacity: 1;
     visibility: visible;
+}
+
+/* --- Estilos do Botão de Tema (Ícone Redondo) e Modal de Opções --- */
+
+.theme-switcher-wrapper {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.theme-button {
+    background-color: var(--link-color);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5em; /* Tamanho do ícone */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    line-height: 1; /* Ajusta a linha para o ícone */
+}
+
+/* O ícone Font Awesome já está dentro do botão, não precisa de ::before */
+/* .theme-button::before {
+    content: "🎨";
+    text-indent: 0;
+    position: absolute;
+} */
+
+.theme-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Container dos botões de tema - Alinha horizontalmente */
+.theme-options-content {
+    display: flex; /* Mantenha esta linha para alinhar horizontalmente */
+    flex-direction: row; /* Garante alinhamento em linha */
+    gap: 10px; /* Espaço entre os botões */
+    list-style: none; /* Se estiver em um UL */
+    padding: 0;
+    margin: 0;
+}
+
+
+.theme-options-modal {
+    position: absolute;
+    bottom: 0;   /* Alinha a parte inferior do modal com a parte inferior do botão */
+    right: calc(100% + 10px); /* Coloca o modal à esquerda do botão, com 10px de espaçamento */
+    background-color: var(--sidebar-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    z-index: 1000;
+    transition: background-color 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(300px); /* Mude translateY para translateX para um efeito de deslize lateral */
+}
+
+/* Mostra o modal ao passar o mouse sobre o wrapper */
+.theme-switcher-wrapper:hover .theme-options-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: translatex(300px);
+}
+
+.theme-options-modal h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-size: 1.1em;
+}
+
+.theme-option {
+    display: flex; /* Para centralizar o ícone Font Awesome */
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Tamanho do botão redondo */
+    height: 40px; /* Tamanho do botão redondo */
+    background-color: var(--hover-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 0; /* Remover padding pois o ícone já centraliza */
+    border-radius: 50%; /* Torna o botão redondo */
+    cursor: pointer;
+    font-size: 1.2em; /* Tamanho do ícone */
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    /* text-align: left; - Removido pois flexbox centraliza */
+}
+
+.theme-option:hover {
+    background-color: var(--link-color);
+    color: white;
+    transform: translateX(2px);
+}
+
+/* O botão "Fechar" do modal de tema não está mais no HTML fornecido,
+   mas se for adicionado novamente, estes estilos podem ser úteis. */
+/* .close-theme-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.close-theme-button:hover {
+    background-color: #c82333;
+} */
+
+
+/* Classes específicas que não tinham variáveis (mantidas se forem para uso pontual) */
+.list-item {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.link-text {
+    display: block;
+    max-width: 20vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
