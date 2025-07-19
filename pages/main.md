@@ -11,7 +11,7 @@
 </p>
 <p>
     Se algo aqui te ajudar, ótimo. Se não ajudar, pelo menos eu tentei.<br>
-    obs: durante a criação deste site, alguns conteúdos estão sendo gerados com inteligência artificial.
+    obs: Este site ainda está em criação, e alguns conteúdos estão sendo gerados com inteligência artificial.
 </p>
 
 <ul class="links">
