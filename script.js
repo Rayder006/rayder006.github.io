@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const closeThemeModalVisual =()=>{
         if(themeOptionsModal){ // Usa a constante themeOptionsModal do escopo superior
             themeOptionsModal.style.opacity = '0';
+            themeOptionsModal.style.transform = 'translateY(100%)';
             themeOptionsModal.style.visibility = 'hidden';
-            themeOptionsModal.style.transform = 'translateY(10px)';
         }
     };
 
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         if(themeOptionsModal){ // Usa a constante themeOptionsModal do escopo superior
             themeOptionsModal.style.opacity = '100';
             themeOptionsModal.style.visibility = 'visible';
-            themeOptionsModal.style.transform = 'translateX(-10px)';
+            themeOptionsModal.style.transform = 'translateX(-102%)';
         }
     };
 
